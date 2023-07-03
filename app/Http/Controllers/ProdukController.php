@@ -14,8 +14,8 @@ class ProdukController extends Controller
         $produk = Produk::where('owner_id',Auth::user()->id)->get();
         return view('index', ['produk' => $produk]);
     }
-    public function read_id($id){
-    	$produk = Produk::where('id',$id)->get();
+    public function read_id(Request $request){
+    	$produk = Produk::where('id',$request->get('id'))->get();
         if($produk->count()==1){
     	    return view('update', ['produk' => $produk]);
         }
@@ -30,8 +30,8 @@ class ProdukController extends Controller
             $produk->save();
         return redirect(url('/'));
     }
-    public function update(Request $request, $id){
-            $produk = Produk::findOrFail($id);
+    public function update(Request $request){
+            $produk = Produk::findOrFail($request->post('id'));
             $produk->name=$request->post('name');
             $produk->price=$request->post('price');
             $produk->owner_id=Auth::user()->id;

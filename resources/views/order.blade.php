@@ -1,11 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>jualonlinedika - Home</title>
+  <title>jualonlinedika - Order</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -28,7 +27,7 @@
     @csrf
   <p>
     <div class="table-responsive">
-        <table class="table table-borderless" id="dataTable" width="100%" cellspacing="0">
+        <!-- <table class="table table-borderless" id="dataTable" width="100%" cellspacing="0">
             <tbody>
                 <tr>
                     <th>name</th>
@@ -44,34 +43,25 @@
         <p>
             <button type="submit" class="btn btn-success btn-md">Insert Product</button>
         </p>
-        </center>
+        </center> -->
     </div>
   </p>
   </form>
-  <h2>List of All Product</h2>
+  <h2>List of All Order</h2>
   <table id="myTable" class="table table-hover">
     <thead>
       <tr>
         <th>ID</th>
-        <th>Name</th>
-        <th>Price</th>
-        <th>Action</th>
+        <th>Paying ID</th>
+        <th>Product</th>
       </tr>
     </thead>
     <tbody>
-    @foreach($produk as $produk)
+    @foreach($pesanan as $pesanan)
       <tr>
-        <td>{{$produk->id}}</td>
-        <td>{{$produk->name}}</td>
-        <td>{{$produk->price}}</td>
-        <td>
-        	<a href="/update?id={{$produk->id}}" class="btn btn-primary">Edit</a> 
-            <form action="/delete" method="post">
-                @csrf
-                <input type="hidden" name="id" value="{{$produk->id}}">
-                <button type="submit" class="btn btn-danger">Delete</button>
-            </form>
-        </td>
+        <td>{{$pesanan->id}}</td>
+        <td>{{$pesanan->paying_id}}</td>
+        <td>{{$pesanan->product}}</td>
       </tr>
     @endforeach
     </tbody>
